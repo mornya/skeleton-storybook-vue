@@ -21,17 +21,22 @@
         <h1>Acme</h1>
       </div>
       <div>
-        <my-button v-if="user" size="small" label="Log out" @onClick="onLogout" />
-        <my-button v-if="!user" size="small" label="Log in" @onClick="onLogin" />
-        <my-button v-if="!user" primary size="small" label="Sign up" @onClick="onCreateAccount" />
+        <template v-if="user">
+          <span class="welcome">Welcome, <b>{{ user.name }}</b>!</span>
+          <my-button size="small" label="Log out" @onClick="onLogout"/>
+        </template>
+        <template v-else>
+          <my-button size="small" label="Log in" @onClick="onLogin"/>
+          <my-button primary size="small" label="Sign up" @onClick="onCreateAccount"/>
+        </template>
       </div>
     </div>
   </header>
 </template>
 
 <script>
-import './header.css';
-import MyButton from './Button.vue';
+import MyButton from '@/components/Button.vue';
+import '@/assets/scss/application/Header.scss';
 
 export default {
   name: 'MyHeader',

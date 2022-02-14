@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "target": "ES5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es5",
     "typeRoots": [
       "./node_modules/@types",
-      "./node_modules/@storybook/vue",
       "./types"
     ],
     "types": [
       "jest",
       "node",
+      "react",
+      "react-dom",
       "webpack-env"
     ],
     "lib": [
@@ -21,12 +22,14 @@
       "scripthost"
     ],
     "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "~/*": ["./*"],
+      "@@/*": ["./src/*"],
+      "~~/*": ["./*"]
     },
     "charset": "utf8",
     "baseUrl": ".",
-    "outDir": "./dist",
+    "outDir": "./dist/",
     "jsx": "preserve",
     "importsNotUsedAsValues": "preserve",
     "declaration": false,
@@ -46,16 +49,23 @@
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
   "include": [
     "types/**/*",
-    "src/**/*"
+    "src/**/*",
+    "stories/**/*"
   ],
   "exclude": [
-    ".idea",
-    ".storybook",
+    "coverage",
+    "public",
+    "src/assets",
+    "stories/assets",
     "dist",
-    "node_modules"
+    ".idea",
+    ".git",
+    ".next",
+    ".vscode"
   ]
 }

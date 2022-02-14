@@ -56,8 +56,8 @@
 </template>
 
 <script>
-import './page.css'
-import MyHeader from './Header.vue'
+import MyHeader from '@/components/Header.vue'
+import '@/assets/scss/application/Page.scss';
 
 export default {
   name: 'my-page',

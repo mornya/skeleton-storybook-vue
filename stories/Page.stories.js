@@ -1,12 +1,12 @@
-import MyPage from './Page';
 import * as HeaderStories from './Header.stories';
+import MyPage from '@/components/Page.vue';
 
 export default {
   title: 'Example/Page',
   component: MyPage,
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (_args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MyPage },
   template:

@@ -1,5 +1,5 @@
 import { linkTo } from '@storybook/addon-links';
-import Welcome from '@/components/Welcome.vue';
+import Welcome from './Welcome.vue';
 
 export default {
   title: 'Welcome', // 스토리보드 제목

@@ -1,11 +1,11 @@
-import MyHeader from './Header';
+import MyHeader from '@/components/Header.vue';
 
 export default {
   title: 'Example/Header',
   component: MyHeader,
 };
 
-const Template = (args, { argTypes }) => ({
+const Template = (_args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { MyHeader },
   template:
@@ -14,7 +14,9 @@ const Template = (args, { argTypes }) => ({
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
-  user: {},
+  user: {
+    name: 'Jane Doe',
+  },
 };
 
 export const LoggedOut = Template.bind({});

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import './button.css';
+import '@/assets/scss/application/Button.scss';
 
 export default {
   name: 'MyButton',
