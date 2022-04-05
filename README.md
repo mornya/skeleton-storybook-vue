@@ -1,4 +1,5 @@
 # Skeleton StoryBook for Vue.js
+___
 
 Copyright 2022. mornya. All rights reserved.
 
@@ -7,6 +8,7 @@ TypeScript + Vue.js용 스토리북 설정이 조합된 스켈레톤 프로젝�
 
 ## Features
 - [StoryBook@6](https://storybook.js.org/) supported.
+- [Vue.js](https://vuejs.org/) based project.
 - Code developed primarily of [TypeScript](https://www.typescriptlang.org) and ES6+.
 - Using [Lintest CLI](https://npmjs.com/package/@lintest/cli), an integrated tool for code quality.
 
