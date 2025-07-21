@@ -1,31 +1,14 @@
 {
   "compilerOptions": {
     "module": "esnext",
+    "target": "esnext",
     "moduleResolution": "node",
-    "target": "es5",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types"
-    ],
-    "types": [
-      "jest",
-      "node",
-      "react",
-      "react-dom",
-      "webpack-env"
-    ],
-    "lib": [
-      "esnext",
-      "esnext.asynciterable",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ],
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "types": ["node"],
+    "lib": ["esnext", "esnext.asynciterable", "dom", "dom.iterable", "scripthost"],
     "paths": {
-      "@/*": ["./src/*"],
       "~/*": ["./*"],
-      "@@/*": ["./src/*"],
-      "~~/*": ["./*"]
+      "@/*": ["./src/*"]
     },
     "charset": "utf8",
     "baseUrl": ".",
@@ -52,20 +35,6 @@
     "isolatedModules": true,
     "incremental": true
   },
-  "include": [
-    "types/**/*",
-    "src/**/*",
-    "stories/**/*"
-  ],
-  "exclude": [
-    "coverage",
-    "public",
-    "src/assets",
-    "stories/assets",
-    "dist",
-    ".idea",
-    ".git",
-    ".next",
-    ".vscode"
-  ]
+  "include": [".storybook/**/*.ts", "src/**/*", "types/**/*", "*.ts"],
+  "exclude": ["coverage", "public", "src/assets", "dist", "node_modules"]
 }
