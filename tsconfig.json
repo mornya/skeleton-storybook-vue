@@ -1,4 +1,5 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
@@ -10,31 +11,7 @@
       "~/*": ["./*"],
       "@/*": ["./src/*"]
     },
-    "charset": "utf8",
-    "baseUrl": ".",
-    "outDir": "./dist/",
-    "jsx": "preserve",
-    "importsNotUsedAsValues": "preserve",
-    "declaration": false,
-    "esModuleInterop": true,
-    "downlevelIteration": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "checkJs": false,
-    "strict": true,
-    "sourceMap": false,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "experimentalDecorators": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "forceConsistentCasingInFileNames": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "incremental": true
   },
-  "include": [".storybook/**/*.ts", "src/**/*", "types/**/*", "*.ts"],
+  "include": [".storybook/**/*.ts", "src/**/*", "src/**/*.vue", "types/**/*", "*.ts"],
   "exclude": ["coverage", "public", "src/assets", "dist", "node_modules"]
 }

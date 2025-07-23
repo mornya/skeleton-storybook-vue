@@ -8,6 +8,8 @@
 import { computed } from 'vue';
 import './Button.scss';
 
+let a = 1;
+
 const props = withDefaults(
   defineProps<{
     /**

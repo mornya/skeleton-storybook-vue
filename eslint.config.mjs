@@ -1,11 +1,13 @@
+import globals from 'globals';
 import jsEslint from '@eslint/js';
 import tsEslint from 'typescript-eslint';
+import vueEslint from 'vue-eslint-parser';
 // Import plugins
-import importPlugin from 'eslint-plugin-import';
-import prettierPlugin from 'eslint-plugin-prettier';
-import storybookPlugin from 'eslint-plugin-storybook';
-import unicornPlugin from 'eslint-plugin-unicorn';
-import vuePlugin from 'eslint-plugin-vue';
+import pluginImport from 'eslint-plugin-import';
+import pluginPrettier from 'eslint-plugin-prettier';
+import pluginStorybook from 'eslint-plugin-storybook';
+import pluginUnicorn from 'eslint-plugin-unicorn';
+import pluginVue from 'eslint-plugin-vue';
 
 /** @type {import('typescript-eslint').InfiniteDepthConfigWithExtends} */
 const eslintConfig = tsEslint.config(
@@ -13,22 +15,9 @@ const eslintConfig = tsEslint.config(
   jsEslint.configs.recommended,
   ...tsEslint.configs.recommended,
   {
-    languageOptions: {
-      parser: tsEslint.parser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: {
-          jsx: true,
-        },
-        project: './tsconfig.json',
-        sourceType: 'module',
-      },
-    },
-  },
-  {
     plugins: {
-      import: importPlugin,
-      unicorn: unicornPlugin,
+      import: pluginImport,
+      unicorn: pluginUnicorn,
     },
   },
   {
@@ -41,7 +30,16 @@ const eslintConfig = tsEslint.config(
 
   // TypeScript specific rules
   {
-    files: ['**/*.{ts,mts,tsx}'],
+    files: ['**/*.{ts,mts,tsx,vue}'],
+    languageOptions: {
+      parser: tsEslint.parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: './tsconfig.json',
+        extraFileExtensions: ['.vue'], // vue 파일 확장자 추가
+      },
+    },
     rules: {
       'import/extensions': ['off'],
       'import/named': ['off'],
@@ -88,16 +86,16 @@ const eslintConfig = tsEslint.config(
 
   // Prettier specific configuration
   {
-    plugins: { prettier: prettierPlugin },
+    plugins: { prettier: pluginPrettier },
     rules: {
       'prettier/prettier': 'off', // Disable Prettier rules to avoid conflicts with other formatting tools
     },
   },
 
   // Storybook specific configuration
-  storybookPlugin.configs['flat/recommended'],
   {
     files: ['**/*.stories.@(ts|tsx)'],
+    extends: [pluginStorybook.configs['flat/recommended']],
     rules: {
       'storybook/csf-component': 'error',
       'storybook/prefer-pascal-case': 'warn',
@@ -105,23 +103,22 @@ const eslintConfig = tsEslint.config(
   },
 
   // Vue.js specific configuration
-  //vuePlugin.configs['flat/essential'], // Vue 3 Essential 규칙
-  //{
-  //  files: ['**/*.vue'],
-  //  languageOptions: {
-  //    ecmaVersion: 'latest',
-  //    sourceType: 'module',
-  //    globals: {
-  //      defineProps: 'readonly',
-  //      defineEmits: 'readonly',
-  //      defineExpose: 'readonly',
-  //      withDefaults: 'readonly',
-  //    },
-  //  },
-  //  rules: {
-  //    'vue/multi-word-component-names': 'off',
-  //  },
-  //},
+  ...pluginVue.configs['flat/essential'],
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueEslint,
+      parserOptions: {
+        parser: tsEslint.parser,
+      },
+      globals: globals.browser,
+    },
+    plugins: { vue: pluginVue },
+    rules: {
+      'vue/multi-word-component-names': 'off',
+      'vue/require-component-is': 'error',
+    },
+  },
 );
 
 export default eslintConfig;
