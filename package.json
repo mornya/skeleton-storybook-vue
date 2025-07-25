@@ -18,7 +18,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky || exit 0",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "nodemon",
     "build-storybook": "storybook build",
     "format": "prettier --write --ignore-path .prettierignore ./.storybook ./src ./types",
     "check": "vue-tsc --noEmit --pretty --project tsconfig.json",
@@ -56,11 +56,12 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.3",
     "eslint-plugin-storybook": "^9.0.17",
-    "eslint-plugin-unicorn": "59.0.1",
+    "eslint-plugin-unicorn": "^60.0.0",
     "eslint-plugin-vue": "^10.3.0",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
+    "nodemon": "^3.1.10",
     "playwright": "^1.54.1",
     "prettier": "^3.6.2",
     "sass": "^1.89.2",
@@ -81,19 +82,24 @@
     "not dead",
     "not ie 11"
   ],
-  "lint-staged": {
-    "*.{css,scss}": [
-      "prettier --write --ignore-path .prettierignore"
+  "nodemonConfig": {
+    "ignore": [
+      ".idea",
+      ".git",
+      ".vscode",
+      "dist",
+      "node_modules",
+      "**/*.(test|spec).[t|j]s"
     ],
-    "*.{ts,tsx}": [
-      "prettier --write --ignore-path .prettierignore",
-      "tsc --noEmit --skipLibCheck",
-      "eslint"
+    "watch": [
+      ".storybook",
+      "src",
+      "package.json",
+      "tsconfig.json",
+      "vite.config.ts",
+      "vitest.config.js"
     ],
-    "*.vue": [
-      "prettier --write --ignore-path .prettierignore",
-      "vue-tsc --noEmit --skipLibCheck",
-      "eslint"
-    ]
+    "ext": "js, ts, tsx, vue, json, mdx",
+    "exec": "storybook dev -p 6006 --no-version-updates --disable-telemetry"
   }
 }
