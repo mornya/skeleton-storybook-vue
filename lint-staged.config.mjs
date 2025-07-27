@@ -8,7 +8,7 @@ export default {
     const files = stagedFiles.join(' ');
     return [
       `prettier --write --ignore-path .prettierignore ${files}`,
-      'vue-tsc --noEmit --project tsconfig.json', // No add files
+      'vue-tsc --noEmit --project tsconfig.json', // Not add "files"
       `eslint --no-cache ${files}`,
     ];
   },
