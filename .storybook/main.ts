@@ -16,13 +16,12 @@ const config: StorybookConfig = {
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath('@storybook/addon-onboarding'),
   ],
   core: {
     builder: '@storybook/builder-vite',
   },
   framework: {
-    name: getAbsolutePath('@storybook/vue3-vite'),
+    name: '@storybook/vue3-vite',
     options: {},
   },
   async viteFinal(config, { configType }) {

@@ -26,9 +26,10 @@ const preview: Preview = {
       return {
         components: { story },
         template: `
-<main>
-  <story />
-</main>`,
+          <main>
+            <story />
+          </main>
+        `,
       };
     },
   ],
